@@ -1,17 +1,14 @@
 package net.adamhilton.handylyst.ui.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
@@ -20,7 +17,6 @@ import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainScreenContract.View{
 
@@ -59,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
         }
     }
 
+    @Override
+    public void showViewResults(java.util.List<List> list) {
+        listAdapter = new ListAdapter(list);
+        list_recycler_view.setAdapter(listAdapter);
+    }
+
     private void initializeView() {
 
         layoutManager = new LinearLayoutManager(this);
@@ -70,11 +72,5 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
     private void startEditActivity() {
         Intent intent = new Intent(this, EditActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void showViewResults(java.util.List<List> list) {
-        listAdapter = new ListAdapter(list);
-        list_recycler_view.setAdapter(listAdapter);
     }
 }
