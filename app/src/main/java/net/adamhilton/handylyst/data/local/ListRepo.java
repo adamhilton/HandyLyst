@@ -20,6 +20,11 @@ public class ListRepo implements  ListRepoContract {
         return lists;
     }
 
+    @Override
+    public List<net.adamhilton.handylyst.data.model.List> create(net.adamhilton.handylyst.data.model.List list) {
+        return null;
+    }
+
     private net.adamhilton.handylyst.data.model.List generateList(String name) {
         net.adamhilton.handylyst.data.model.List list = new net.adamhilton.handylyst.data.model.List();
         list.Name = name;

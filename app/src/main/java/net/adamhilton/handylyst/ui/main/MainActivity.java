@@ -1,16 +1,26 @@
 package net.adamhilton.handylyst.ui.main;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.ui.edit.EditActivity;
 import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainScreenContract.View{
 
@@ -22,12 +32,31 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
 
     private MainScreenContract.Presenter presenter = new MainPresenter(this);
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         initializeView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_create:
+                startEditActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initializeView() {
@@ -36,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
         list_recycler_view.setLayoutManager(layoutManager);
 
         presenter.retrieveViewResults();
+    }
+
+    private void startEditActivity() {
+        Intent intent = new Intent(this, EditActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -11,5 +11,4 @@ public class MainScreenContract {
     public interface Presenter {
         void retrieveViewResults();
     }
-
 }
