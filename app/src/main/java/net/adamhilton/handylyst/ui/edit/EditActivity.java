@@ -42,13 +42,19 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
         if (bundle != null) {
             list = (List) bundle.getSerializable(EXTRA_LIST);
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         initializeView();
     }
 
     private void initializeView() {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        name_text.setText(list.getName());
 
         layoutManager = new LinearLayoutManager(this);
         list_item_recycler_view.setLayoutManager(layoutManager);

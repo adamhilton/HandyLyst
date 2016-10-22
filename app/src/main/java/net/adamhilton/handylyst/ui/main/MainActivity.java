@@ -9,17 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
 import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
-import net.adamhilton.handylyst.ui.main.recyclerview.ListViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainScreenContract.View {
 
