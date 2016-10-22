@@ -1,8 +1,9 @@
 package net.adamhilton.handylyst.data.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class List {
+public class List implements Serializable{
 
     private String Name;
     private java.util.List<String> Items;
@@ -27,5 +28,9 @@ public class List {
 
     public void setItems(java.util.List<String> items) {
         Items = items;
+    }
+
+    public void addItem(String item) {
+        this.getItems().add(item);
     }
 }

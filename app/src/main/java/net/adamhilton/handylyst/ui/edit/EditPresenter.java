@@ -19,4 +19,9 @@ public class EditPresenter implements EditScreenContract.Presenter {
         listRepo.create(list);
         view.GoBack();
     }
+
+    @Override
+    public void AddListItem() {
+        view.AddItemToList("an item...");
+    }
 }
