@@ -24,10 +24,6 @@ public class List implements Serializable{
         return Items;
     }
 
-    public void setItems(java.util.List<String> items) {
-        Items = items;
-    }
-
     public void addItem(String item) {
         this.Items.add(item);
     }
