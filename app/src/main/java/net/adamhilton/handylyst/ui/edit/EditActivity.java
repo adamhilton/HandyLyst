@@ -18,7 +18,7 @@ import butterknife.OnClick;
 
 public class EditActivity extends AppCompatActivity implements EditScreenContract.View {
 
-    public static final String EXTRA_LIST = "net.adamhilton.handylist.LIST";
+    public static final String EXTRA_LIST = "net.adamhilton.handylyst.LIST";
 
     private List list = new List();
 
@@ -61,11 +61,6 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
 
         listAdapter = new ListItemAdapter(list);
         list_item_recycler_view.setAdapter(listAdapter);
-    }
-
-    @OnClick(R.id.cancel)
-    public void onCancelClicked() {
-        super.onBackPressed();
     }
 
     @OnClick(R.id.save)
