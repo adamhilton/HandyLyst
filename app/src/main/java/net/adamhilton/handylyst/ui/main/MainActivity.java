@@ -18,7 +18,7 @@ import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainScreenContract.View{
+public class MainActivity extends AppCompatActivity implements MainScreenContract.View {
 
     @BindView(R.id.list_recycler_view)
     RecyclerView list_recycler_view;
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
     }
 
     private void initializeView() {
-
         layoutManager = new LinearLayoutManager(this);
         list_recycler_view.setLayoutManager(layoutManager);
 

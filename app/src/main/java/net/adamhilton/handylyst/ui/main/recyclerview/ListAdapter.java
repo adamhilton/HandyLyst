@@ -11,16 +11,16 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
-    private List<net.adamhilton.handylyst.data.model.List> list;
+    private List<net.adamhilton.handylyst.data.model.List> lists;
 
-    public ListAdapter(List<net.adamhilton.handylyst.data.model.List> list) {
-        this.list = list;
+    public ListAdapter(List<net.adamhilton.handylyst.data.model.List> lists) {
+        this.lists = lists;
     }
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item, parent, false);
+                .inflate(R.layout.list, parent, false);
 
         ListViewHolder viewHolder = new ListViewHolder(view);
         return viewHolder;
@@ -28,11 +28,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        holder.name.setText(list.get(position).Name);
+        holder.name.setText(lists.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return lists.size();
     }
 }
