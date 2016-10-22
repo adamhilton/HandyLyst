@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class List implements Serializable{
 
     private String Name;
-    private java.util.List<String> Items;
+    private java.util.List<String> Items = new ArrayList<>();
 
     public String getName() {
         if (Name == null || Name.isEmpty()) {
@@ -20,9 +20,6 @@ public class List implements Serializable{
     }
 
     public java.util.List<String> getItems() {
-        if(Items == null) {
-            Items = new ArrayList<>();
-        }
         return Items;
     }
 
@@ -31,6 +28,6 @@ public class List implements Serializable{
     }
 
     public void addItem(String item) {
-        this.getItems().add(item);
+        this.Items.add(item);
     }
 }

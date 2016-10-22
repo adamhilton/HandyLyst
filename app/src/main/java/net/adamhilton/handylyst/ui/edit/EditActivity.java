@@ -46,6 +46,17 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
         initializeView();
     }
 
+    private void initializeView() {
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        layoutManager = new LinearLayoutManager(this);
+        list_item_recycler_view.setLayoutManager(layoutManager);
+
+        listAdapter = new ListItemAdapter(list);
+        list_item_recycler_view.setAdapter(listAdapter);
+    }
+
     @OnClick(R.id.cancel)
     public void onCancelClicked() {
         super.onBackPressed();
@@ -53,9 +64,8 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
 
     @OnClick(R.id.save)
     public void onSaveClicked() {
-        List list = new List();
         String name = String.valueOf(name_text.getText());
-        list.setName(name);
+        this.list.setName(name);
         presenter.CreateList(list);
     }
 
@@ -73,16 +83,5 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
     public void AddItemToList(String item) {
         this.list.addItem(item);
         listAdapter.notifyItemInserted(this.list.getItems().size() - 1);
-    }
-
-    private void initializeView() {
-        getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
-        layoutManager = new LinearLayoutManager(this);
-        list_item_recycler_view.setLayoutManager(layoutManager);
-
-        listAdapter = new ListItemAdapter(list);
-        list_item_recycler_view.setAdapter(listAdapter);
     }
 }

@@ -2,14 +2,15 @@ package net.adamhilton.handylyst.data.local;
 
 import android.support.annotation.NonNull;
 
+import net.adamhilton.handylyst.data.model.List;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ListRepo implements  ListRepoContract {
 
     private static ListRepo instance = null;
-    private static List<net.adamhilton.handylyst.data.model.List> lists = null;
+    private static java.util.List<List> lists = null;
 
     public static ListRepo getInstance() {
         if(instance == null) {
@@ -28,19 +29,19 @@ public class ListRepo implements  ListRepoContract {
 
     @Override
     @NonNull
-    public List<net.adamhilton.handylyst.data.model.List> getAll() {
+    public java.util.List<List> getAll() {
         return lists;
     }
 
     @Override
-    public void create(net.adamhilton.handylyst.data.model.List list) {
+    public void create(List list) {
         lists.add(list);
     }
 
-    private net.adamhilton.handylyst.data.model.List generateList(String name) {
-        net.adamhilton.handylyst.data.model.List list = new net.adamhilton.handylyst.data.model.List();
+    private List generateList(String name) {
+        net.adamhilton.handylyst.data.model.List list = new List();
         list.setName(name);
-        List<String> items =  Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
+        java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
         list.setItems(items);
         return list;
     }
