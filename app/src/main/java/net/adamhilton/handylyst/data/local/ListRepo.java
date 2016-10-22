@@ -35,7 +35,7 @@ public class ListRepo implements  ListRepoContract {
     }
 
     @Override
-    public List getById(int id) throws InvalidParameterException{
+    public List getById(int id) {
         for (List item : lists) {
             if (item.getId() == id) {
                 return item;
@@ -60,7 +60,7 @@ public class ListRepo implements  ListRepoContract {
     private int getNewId() {
         int maxId = 0;
         if(lists.size() > 0) {
-            java.util.List<Integer> ids = new ArrayList<Integer>();
+            java.util.List<Integer> ids = new ArrayList<>();
             for (List item : lists) {
                 ids.add(item.getId());
             }
@@ -73,7 +73,9 @@ public class ListRepo implements  ListRepoContract {
         List list = new List();
         list.setName(name);
         java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
-        list.setItems(items);
+        for (String item: items) {
+            list.addItem(item);
+        }
         return list;
     }
 }

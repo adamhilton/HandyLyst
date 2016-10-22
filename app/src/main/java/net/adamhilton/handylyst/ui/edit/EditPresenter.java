@@ -16,7 +16,12 @@ public class EditPresenter implements EditScreenContract.Presenter {
 
     @Override
     public void CreateList(List list) {
-        listRepo.create(list);
+        if(list.getId() == 0) {
+            listRepo.create(list);
+        } else {
+            listRepo.update(list);
+        }
+
         view.GoBack();
     }
 
