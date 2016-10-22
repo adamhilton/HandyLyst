@@ -17,7 +17,7 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
     private EditPresenter presenter;
 
     @BindView(R.id.edit_name_text)
-    EditText name;
+    EditText name_text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +36,8 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
     @OnClick(R.id.save)
     public void onSaveClicked() {
         List list = new List();
-        list.Name = String.valueOf(name.getText());
+        String name = String.valueOf(name_text.getText());
+        list.setName(name);
         presenter.CreateList(list);
     }
 

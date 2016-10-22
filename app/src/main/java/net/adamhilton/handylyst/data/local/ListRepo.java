@@ -39,8 +39,9 @@ public class ListRepo implements  ListRepoContract {
 
     private net.adamhilton.handylyst.data.model.List generateList(String name) {
         net.adamhilton.handylyst.data.model.List list = new net.adamhilton.handylyst.data.model.List();
-        list.Name = name;
-        list.Items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
+        list.setName(name);
+        List<String> items =  Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
+        list.setItems(items);
         return list;
     }
 }
