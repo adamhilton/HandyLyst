@@ -35,4 +35,8 @@ public class List implements Serializable{
     public void setId(int id) {
         Id = id;
     }
+
+    public void setItem(int index, String text) {
+        Items.set(index, text);
+    }
 }
