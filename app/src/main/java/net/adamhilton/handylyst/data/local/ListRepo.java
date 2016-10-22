@@ -8,16 +8,33 @@ import java.util.List;
 
 public class ListRepo implements  ListRepoContract {
 
-    @Override
-    @NonNull
-    public List<net.adamhilton.handylyst.data.model.List> getAll() {
-        List<net.adamhilton.handylyst.data.model.List> lists;
+    private static ListRepo instance = null;
+    private static List<net.adamhilton.handylyst.data.model.List> lists = null;
+
+    public static ListRepo getInstance() {
+        if(instance == null) {
+            instance = new ListRepo();
+        }
+        return instance;
+    }
+
+    protected ListRepo() {
         lists = new ArrayList<>();
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             String name = String.format("List # %s", i);
             lists.add(generateList(name));
         }
+    }
+
+    @Override
+    @NonNull
+    public List<net.adamhilton.handylyst.data.model.List> getAll() {
         return lists;
+    }
+
+    @Override
+    public void create(net.adamhilton.handylyst.data.model.List list) {
+        lists.add(list);
     }
 
     private net.adamhilton.handylyst.data.model.List generateList(String name) {

@@ -1,7 +1,9 @@
 package net.adamhilton.handylyst.data.local;
 
-import java.util.List;
+
+import net.adamhilton.handylyst.data.model.List;
 
 public interface ListRepoContract {
-    List<net.adamhilton.handylyst.data.model.List> getAll();
+    java.util.List<List> getAll();
+    void create(List list);
 }

@@ -16,7 +16,7 @@ public class MainPresenter implements MainScreenContract.Presenter {
     public void retrieveViewResults() {
 
         List<net.adamhilton.handylyst.data.model.List> lists;
-        lists = new ListRepo().getAll();
+        lists = ListRepo.getInstance().getAll();
         view.showViewResults(lists);
     }
 }
