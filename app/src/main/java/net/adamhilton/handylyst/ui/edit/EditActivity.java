@@ -17,6 +17,8 @@ import butterknife.OnClick;
 
 public class EditActivity extends AppCompatActivity implements EditScreenContract.View {
 
+    private List list = new List();
+
     private ListItemAdapter listAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -54,18 +56,12 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
         super.onBackPressed();
     }
 
-    @Override
-    public void showListItems(List list) {
-        listAdapter = new ListItemAdapter(list);
-        list_item_recycler_view.setAdapter(listAdapter);
-    }
-
     private void initializeView() {
 
         layoutManager = new LinearLayoutManager(this);
         list_item_recycler_view.setLayoutManager(layoutManager);
 
-        presenter.RetrieveListItems();
+        listAdapter = new ListItemAdapter(list);
+        list_item_recycler_view.setAdapter(listAdapter);
     }
-
 }

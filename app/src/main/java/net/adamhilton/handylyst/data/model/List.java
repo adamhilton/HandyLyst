@@ -1,5 +1,7 @@
 package net.adamhilton.handylyst.data.model;
 
+import java.util.ArrayList;
+
 public class List {
 
     private String Name;
@@ -17,6 +19,9 @@ public class List {
     }
 
     public java.util.List<String> getItems() {
+        if(Items == null) {
+            Items = new ArrayList<>();
+        }
         return Items;
     }
 

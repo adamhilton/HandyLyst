@@ -5,4 +5,5 @@
     <string name="list_name_label">List name: </string>
     <string name="menu_create">Create</string>
     <string name="delete_list_item_button">Delete</string>
+    <string name="create_new_list_item">Add item</string>
 </resources>
