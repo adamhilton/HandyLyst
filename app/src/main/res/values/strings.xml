@@ -4,4 +4,5 @@
     <string name="cancel_button">Cancel</string>
     <string name="list_name_label">List name: </string>
     <string name="menu_create">Create</string>
+    <string name="delete_list_item_button">Delete</string>
 </resources>

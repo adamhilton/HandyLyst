@@ -11,10 +11,10 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
-    private List<net.adamhilton.handylyst.data.model.List> list;
+    private List<net.adamhilton.handylyst.data.model.List> lists;
 
-    public ListAdapter(List<net.adamhilton.handylyst.data.model.List> list) {
-        this.list = list;
+    public ListAdapter(List<net.adamhilton.handylyst.data.model.List> lists) {
+        this.lists = lists;
     }
 
     @Override
@@ -28,11 +28,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        holder.name.setText(list.get(position).getName());
+        holder.name.setText(lists.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return lists.size();
     }
 }
