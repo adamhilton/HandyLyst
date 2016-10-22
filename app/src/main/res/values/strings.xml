@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Handy Lyst</string>
-    <string name="save_button">Save</string>
+    <string name="save_button">SAVE</string>
     <string name="cancel_button">Cancel</string>
     <string name="list_name_label">List name: </string>
     <string name="menu_create">Create</string>
