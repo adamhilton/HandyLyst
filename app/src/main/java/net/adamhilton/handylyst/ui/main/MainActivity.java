@@ -33,7 +33,11 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         initializeView();
     }
 
