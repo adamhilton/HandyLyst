@@ -21,4 +21,10 @@ public class BaseActivity extends AppCompatActivity {
 
         return activityComponent;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        activityComponent = null;
+    }
 }
