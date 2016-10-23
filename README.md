@@ -4,5 +4,6 @@
 
 ## made using
  - mvp pattern
+ - constraint layouts
  - dagger 2
  - butterknife
