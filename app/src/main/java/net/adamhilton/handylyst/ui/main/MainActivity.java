@@ -15,6 +15,7 @@ import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.local.ListRepoContract;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
 import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
 
@@ -23,7 +24,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainScreenContract.View {
+public class MainActivity extends BaseActivity implements MainScreenContract.View {
 
     @BindView(R.id.list_recycler_view)
     RecyclerView list_recycler_view;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenContrac
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityComponent().inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
     }

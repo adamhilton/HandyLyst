@@ -10,13 +10,14 @@ import android.widget.EditText;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.recyclerview.ListItemAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditActivity extends AppCompatActivity implements EditScreenContract.View {
+public class EditActivity extends BaseActivity implements EditScreenContract.View {
 
     public static final String EXTRA_LIST = "net.adamhilton.handylyst.LIST";
 
@@ -35,6 +36,7 @@ public class EditActivity extends AppCompatActivity implements EditScreenContrac
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityComponent().inject(this);
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
 

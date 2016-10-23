@@ -1,6 +1,5 @@
 package net.adamhilton.handylyst.ui.main;
 
-import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.local.ListRepoContract;
 
 import java.util.List;
