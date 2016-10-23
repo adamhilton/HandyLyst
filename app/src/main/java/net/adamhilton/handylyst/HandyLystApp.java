@@ -2,6 +2,7 @@ package net.adamhilton.handylyst;
 
 import android.app.Application;
 
+import net.adamhilton.handylyst.data.local.ListRepoContract;
 import net.adamhilton.handylyst.injection.component.AppComponent;
 import net.adamhilton.handylyst.injection.component.DaggerAppComponent;
 import net.adamhilton.handylyst.injection.module.AppModule;
@@ -24,4 +25,10 @@ public class HandyLystApp extends Application {
 
         if(BuildConfig.DEBUG) { Timber.plant(new Timber.DebugTree()); }
     }
+
+    public static HandyLystApp getInstance() { return Instance; }
+
+    public static AppComponent getAppComponent() { return AppComponent; }
+
+    public static ListRepoContract getListRepo() { return AppComponent.listRepo(); }
 }

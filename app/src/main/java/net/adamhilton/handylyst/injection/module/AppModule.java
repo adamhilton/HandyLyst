@@ -8,8 +8,6 @@ import net.adamhilton.handylyst.data.local.ListRepoContract;
 import net.adamhilton.handylyst.injection.qualifier.AppContext;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
