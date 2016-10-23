@@ -57,6 +57,11 @@ public class ListRepo implements  ListRepoContract {
         lists.add(list);
     }
 
+    @Override
+    public void delete(List list) {
+        lists.remove(list);
+    }
+
     private int getNewId() {
         int maxId = 0;
         if(lists.size() > 0) {

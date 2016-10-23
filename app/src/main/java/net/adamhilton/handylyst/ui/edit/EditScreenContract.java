@@ -5,15 +5,14 @@ import net.adamhilton.handylyst.data.model.List;
 public class EditScreenContract {
 
     public interface View {
-
-        void GoBack();
-        void AddItemToList(String item);
+        void goBack();
+        void addItemToList(String item);
+        void updateListItem(int position);
     }
 
     public interface Presenter {
-
-        void CreateList(List list);
-
-        void AddListItem();
+        void createList(List list);
+        void addListItem();
+        void deleteItem(List list, int position);
     }
 }

@@ -8,4 +8,5 @@ public interface ListRepoContract {
     List getById(int id);
     void create(List list);
     void update(List list);
+    void delete(List list);
 }

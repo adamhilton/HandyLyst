@@ -2,7 +2,6 @@ package net.adamhilton.handylyst.ui.edit;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
@@ -17,7 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditActivity extends BaseActivity implements EditScreenContract.View {
+public class EditActivity extends BaseActivity
+        implements EditScreenContract.View, ListItemAdapter.ButtonClickEventListener {
 
     public static final String EXTRA_LIST = "net.adamhilton.handylyst.LIST";
 
@@ -47,9 +47,16 @@ public class EditActivity extends BaseActivity implements EditScreenContract.Vie
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        listAdapter.unsubscribeEventListener(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         initializeView();
+        listAdapter.subscribeEventListener(this);
     }
 
     private void initializeView() {
@@ -69,22 +76,32 @@ public class EditActivity extends BaseActivity implements EditScreenContract.Vie
     public void onSaveClicked() {
         String name = String.valueOf(name_text.getText());
         this.list.setName(name);
-        presenter.CreateList(list);
+        presenter.createList(list);
     }
 
     @OnClick(R.id.add_list_item_button)
     public void onListItemAddClicked() {
-        presenter.AddListItem();
+        presenter.addListItem();
     }
 
     @Override
-    public void GoBack() {
+    public void goBack() {
         super.onBackPressed();
     }
 
     @Override
-    public void AddItemToList(String item) {
+    public void addItemToList(String item) {
         this.list.addItem(item);
         listAdapter.notifyItemInserted(this.list.getItems().size() - 1);
+    }
+
+    @Override
+    public void deleteButtonClicked(int position) {
+        presenter.deleteItem(list, position);
+    }
+
+    @Override
+    public void updateListItem(int position) {
+        listAdapter.notifyItemChanged(position);
     }
 }
