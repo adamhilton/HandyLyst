@@ -7,7 +7,7 @@ public class EditScreenContract {
     public interface View {
         void goBack();
         void addItemToList(String item);
-        void updateListItem(int position);
+        void removeListItem(int position);
     }
 
     public interface Presenter {

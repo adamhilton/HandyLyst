@@ -34,6 +34,6 @@ public class EditPresenter implements EditScreenContract.Presenter {
     @Override
     public void deleteItem(List list, int position) {
         list.removeItem(position);
-        view.updateListItem(position);
+        view.removeListItem(position);
     }
 }

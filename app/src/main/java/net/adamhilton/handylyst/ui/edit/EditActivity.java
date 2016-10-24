@@ -101,7 +101,8 @@ public class EditActivity extends BaseActivity
     }
 
     @Override
-    public void updateListItem(int position) {
-        listAdapter.notifyItemChanged(position);
+    public void removeListItem(int position) {
+        listAdapter.notifyItemRemoved(position);
+        listAdapter.notifyItemRangeChanged(position, list.getItems().size());
     }
 }
