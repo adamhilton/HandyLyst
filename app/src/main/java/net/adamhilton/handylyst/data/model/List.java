@@ -28,6 +28,10 @@ public class List implements Serializable{
         this.Items.add(item);
     }
 
+    public void removeItem(int index) {
+        this.Items.remove(index);
+    }
+
     public int getId() {
         return Id;
     }

@@ -6,17 +6,22 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListItemViewHolder> {
 
     private List list;
+    private java.util.List<ButtonClickEventListener> listeners = new ArrayList<>();
 
     public ListItemAdapter(List list) {
         this.list = list;
@@ -32,9 +37,19 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
     }
 
     @Override
-    public void onBindViewHolder(ListItemViewHolder holder, int position) {
-        holder.editTextListener.updatePosition(holder.getAdapterPosition());
+    public void onBindViewHolder(ListItemViewHolder holder, final int position) {
+        holder.editTextListener.updatePosition(position);
         holder.item.setText(list.getItems().get(position));
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(ButtonClickEventListener listener : listeners) {
+                    listener.deleteButtonClicked(position);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -42,10 +57,21 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
         return list.getItems().size();
     }
 
+    public void subscribeEventListener(ButtonClickEventListener listener) {
+        listeners.add(listener);
+    }
+
+    public void unsubscribeEventListener(ButtonClickEventListener listener) {
+        listeners.remove(listener);
+    }
+
     public static class ListItemViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.list_item_text)
         EditText item;
+
+        @BindView(R.id.delete_list_item_button)
+        Button delete;
 
         EditTextListener editTextListener;
 
@@ -76,5 +102,9 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
         @Override
         public void afterTextChanged(Editable editable) {
         }
+    }
+
+    public interface ButtonClickEventListener {
+        void deleteButtonClicked(int position);
     }
 }

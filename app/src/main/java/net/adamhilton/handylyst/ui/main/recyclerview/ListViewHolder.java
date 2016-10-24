@@ -35,5 +35,4 @@ public class ListViewHolder extends RecyclerView.ViewHolder{
         intent.putExtra(EditActivity.EXTRA_LIST, ListRepo.getInstance().getAll().get(getAdapterPosition()));
         context.startActivity(intent);
     }
-
 }
