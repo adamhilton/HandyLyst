@@ -52,9 +52,8 @@ public class ListRepo implements  ListRepoContract {
 
     @Override
     public void update(List list) {
-        List oldList = getById(list.getId());
-        lists.remove(oldList);
-        lists.add(list);
+        int index = lists.indexOf(getById(list.getId()));
+        lists.set(index, list);
     }
 
     @Override

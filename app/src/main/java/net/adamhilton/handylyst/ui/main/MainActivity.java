@@ -92,6 +92,7 @@ public class MainActivity extends BaseActivity implements MainScreenContract.Vie
 
     private void startEditActivity() {
         Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra(EditActivity.EXTRA_IS_NEW_LIST, true);
         startActivity(intent);
     }
 }
