@@ -14,5 +14,6 @@ public class EditScreenContract {
         void createList(List list);
         void addListItem();
         void deleteItem(List list, int position);
+        void updateList(List list);
     }
 }

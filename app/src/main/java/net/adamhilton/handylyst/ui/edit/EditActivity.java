@@ -20,6 +20,7 @@ public class EditActivity extends BaseActivity
         implements EditScreenContract.View, ListItemAdapter.ButtonClickEventListener {
 
     public static final String EXTRA_LIST = "net.adamhilton.handylyst.LIST";
+    public static final String EXTRA_IS_NEW_LIST = "net.adamhilton.handylyst.ISNEWLIST";
 
     private List list = new List();
 
@@ -27,6 +28,8 @@ public class EditActivity extends BaseActivity
     private RecyclerView.LayoutManager layoutManager;
 
     private EditPresenter presenter =  new EditPresenter(this);
+
+    private boolean isNewList;
 
     @BindView(R.id.edit_name_text)
     EditText name_text;
@@ -42,7 +45,11 @@ public class EditActivity extends BaseActivity
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            list = (List) bundle.getSerializable(EXTRA_LIST);
+            isNewList = bundle.getBoolean(EXTRA_IS_NEW_LIST);
+
+            if(bundle.containsKey(EXTRA_LIST)) {
+                list = (List) bundle.getSerializable(EXTRA_LIST);
+            }
         }
     }
 
@@ -76,7 +83,11 @@ public class EditActivity extends BaseActivity
     public void onSaveClicked() {
         String name = String.valueOf(name_text.getText());
         this.list.setName(name);
-        presenter.createList(list);
+        if(isNewList) {
+            presenter.createList(list);
+        } else {
+            presenter.updateList(list);
+        }
     }
 
     @OnClick(R.id.add_list_item_button)
