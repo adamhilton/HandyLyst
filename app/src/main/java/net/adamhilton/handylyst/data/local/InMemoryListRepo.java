@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class ListRepo implements  ListRepoContract {
+public class InMemoryListRepo implements  ListRepoContract {
 
-    private static ListRepo instance = null;
+    private static InMemoryListRepo instance = null;
     private static java.util.List<List> lists = new ArrayList<>();
 
-    public static ListRepo getInstance() {
+    public static InMemoryListRepo getInstance() {
         if(instance == null) {
-            instance = new ListRepo();
+            instance = new InMemoryListRepo();
         }
         return instance;
     }
 
-    protected ListRepo() {
+    protected InMemoryListRepo() {
         for (int i = 0; i < 5; i++) {
             String name = String.format("List # %s", i);
             create(generateList(name));

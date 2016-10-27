@@ -7,10 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.adamhilton.handylyst.R;
-import net.adamhilton.handylyst.data.local.ListRepo;
+import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +30,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder{
     @OnClick
     public void onItemClicked() {
         Intent intent = new Intent(context, EditActivity.class);
-        intent.putExtra(EditActivity.EXTRA_LIST, ListRepo.getInstance().getAll().get(getAdapterPosition()));
+        intent.putExtra(EditActivity.EXTRA_LIST, InMemoryListRepo.getInstance().getAll().get(getAdapterPosition()));
         context.startActivity(intent);
     }
 }

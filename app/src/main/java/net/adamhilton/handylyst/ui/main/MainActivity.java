@@ -3,7 +3,6 @@ package net.adamhilton.handylyst.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 
 import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
-import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.local.ListRepoContract;
 import net.adamhilton.handylyst.data.model.List;
 import net.adamhilton.handylyst.ui.base.BaseActivity;
