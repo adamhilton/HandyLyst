@@ -8,12 +8,15 @@ import net.adamhilton.handylyst.injection.qualifier.AppContext;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
 import dagger.Component;
+import io.realm.Realm;
 
 @PerApplication
 @Component(modules={AppModule.class})
 public interface AppComponent {
     @AppContext
     Context context();
+
+    Realm realm();
 
     ListRepoContract listRepo();
 }

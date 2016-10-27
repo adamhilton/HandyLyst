@@ -3,12 +3,14 @@ package net.adamhilton.handylyst.data.local;
 import android.support.annotation.NonNull;
 
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.injection.scope.PerApplication;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+@PerApplication
 public class InMemoryListRepo implements  ListRepoContract {
 
     private static InMemoryListRepo instance = null;
