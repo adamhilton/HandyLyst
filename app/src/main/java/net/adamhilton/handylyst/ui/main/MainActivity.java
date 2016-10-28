@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
-import net.adamhilton.handylyst.data.local.ListRepoContract;
+import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.model.List;
 import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements MainScreenContract.Vie
     private MainScreenContract.Presenter presenter;
 
     @Inject
-    ListRepoContract listRepo = HandyLystApp.getListRepo();
+    ListRepo listRepo = HandyLystApp.getListRepo();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

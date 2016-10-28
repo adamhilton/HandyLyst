@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.data.model.RealmString;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
     @Override
     public void onBindViewHolder(ListItemViewHolder holder, final int position) {
         holder.editTextListener.updatePosition(position);
-        holder.item.setText(list.getItems().get(position));
+        holder.item.setText(list.Items.get(position).value);
 
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +55,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
 
     @Override
     public int getItemCount() {
-        return list.getItems().size();
+        return list.Items.size();
     }
 
     public void subscribeEventListener(ButtonClickEventListener listener) {
@@ -96,7 +97,9 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            list.setItem(position, charSequence.toString());
+            RealmString realmString = new RealmString();
+            realmString.value = charSequence.toString();
+            list.Items.set(position, realmString);
         }
 
         @Override

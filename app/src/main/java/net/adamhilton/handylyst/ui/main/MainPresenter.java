@@ -1,15 +1,15 @@
 package net.adamhilton.handylyst.ui.main;
 
-import net.adamhilton.handylyst.data.local.ListRepoContract;
+import net.adamhilton.handylyst.data.local.ListRepo;
 
 import java.util.List;
 
 public class MainPresenter implements MainScreenContract.Presenter {
 
     private MainScreenContract.View view;
-    private ListRepoContract listRepo;
+    private ListRepo listRepo;
 
-    public MainPresenter(MainScreenContract.View view, ListRepoContract listRepo) {
+    public MainPresenter(MainScreenContract.View view, ListRepo listRepo) {
         this.view = view;
         this.listRepo = listRepo;
     }

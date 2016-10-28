@@ -3,7 +3,7 @@ package net.adamhilton.handylyst.data.local;
 
 import net.adamhilton.handylyst.data.model.List;
 
-public interface ListRepoContract {
+public interface ListRepo {
     java.util.List<List> getAll();
     List getById(int id);
     void create(List list);

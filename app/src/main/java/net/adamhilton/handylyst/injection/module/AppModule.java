@@ -5,7 +5,7 @@ import android.content.Context;
 
 import net.adamhilton.handylyst.BuildConfig;
 import net.adamhilton.handylyst.data.local.InMemoryListRepo;
-import net.adamhilton.handylyst.data.local.ListRepoContract;
+import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.injection.qualifier.AppContext;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
@@ -31,7 +31,7 @@ public class AppModule {
     }
 
     @Provides
-    static ListRepoContract provideListRepo() {
+    static ListRepo provideListRepo() {
         return InMemoryListRepo.getInstance();
     }
 

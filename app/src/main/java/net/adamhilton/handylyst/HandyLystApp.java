@@ -2,7 +2,7 @@ package net.adamhilton.handylyst;
 
 import android.app.Application;
 
-import net.adamhilton.handylyst.data.local.ListRepoContract;
+import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.injection.component.AppComponent;
 import net.adamhilton.handylyst.injection.component.DaggerAppComponent;
 import net.adamhilton.handylyst.injection.module.AppModule;
@@ -30,5 +30,5 @@ public class HandyLystApp extends Application {
 
     public static AppComponent getAppComponent() { return AppComponent; }
 
-    public static ListRepoContract getListRepo() { return AppComponent.listRepo(); }
+    public static ListRepo getListRepo() { return AppComponent.listRepo(); }
 }

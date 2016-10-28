@@ -3,6 +3,7 @@ package net.adamhilton.handylyst.data.local;
 import android.support.annotation.NonNull;
 
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.data.model.RealmString;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
 import java.security.InvalidParameterException;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @PerApplication
-public class InMemoryListRepo implements  ListRepoContract {
+public class InMemoryListRepo implements ListRepo {
 
     private static InMemoryListRepo instance = null;
     private static java.util.List<List> lists = new ArrayList<>();
@@ -39,7 +40,7 @@ public class InMemoryListRepo implements  ListRepoContract {
     @Override
     public List getById(int id) {
         for (List item : lists) {
-            if (item.getId() == id) {
+            if (item.Id == id) {
                 return item;
             }
         }
@@ -48,13 +49,13 @@ public class InMemoryListRepo implements  ListRepoContract {
 
     @Override
     public void create(List list) {
-        list.setId(getNewId());
+        list.Id = getNewId();
         lists.add(list);
     }
 
     @Override
     public void update(List list) {
-        int index = lists.indexOf(getById(list.getId()));
+        int index = lists.indexOf(getById(list.Id));
         lists.set(index, list);
     }
 
@@ -68,7 +69,7 @@ public class InMemoryListRepo implements  ListRepoContract {
         if(lists.size() > 0) {
             java.util.List<Integer> ids = new ArrayList<>();
             for (List item : lists) {
-                ids.add(item.getId());
+                ids.add(item.Id);
             }
             maxId = Collections.max(ids);
         }
@@ -77,10 +78,12 @@ public class InMemoryListRepo implements  ListRepoContract {
 
     private List generateList(String name) {
         List list = new List();
-        list.setName(name);
+        list.Name = name;
         java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
         for (String item: items) {
-            list.addItem(item);
+            RealmString realmString = new RealmString();
+            realmString.value = item;
+            list.Items.add(realmString);
         }
         return list;
     }

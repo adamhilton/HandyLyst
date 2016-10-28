@@ -9,8 +9,11 @@ import android.widget.EditText;
 
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.data.model.RealmString;
 import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.recyclerview.ListItemAdapter;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +51,7 @@ public class EditActivity extends BaseActivity
             isNewList = bundle.getBoolean(EXTRA_IS_NEW_LIST);
 
             if(bundle.containsKey(EXTRA_LIST)) {
-                list = (List) bundle.getSerializable(EXTRA_LIST);
+                list = Parcels.unwrap(bundle.getParcelable(EXTRA_LIST));
             }
         }
     }
@@ -70,7 +73,7 @@ public class EditActivity extends BaseActivity
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        name_text.setText(list.getName());
+        name_text.setText(list.Name);
 
         layoutManager = new LinearLayoutManager(this);
         list_item_recycler_view.setLayoutManager(layoutManager);
@@ -82,7 +85,7 @@ public class EditActivity extends BaseActivity
     @OnClick(R.id.save)
     public void onSaveClicked() {
         String name = String.valueOf(name_text.getText());
-        this.list.setName(name);
+        this.list.Name = name;
         if(isNewList) {
             presenter.createList(list);
         } else {
@@ -102,8 +105,10 @@ public class EditActivity extends BaseActivity
 
     @Override
     public void addItemToList(String item) {
-        this.list.addItem(item);
-        listAdapter.notifyItemInserted(this.list.getItems().size() - 1);
+        RealmString realmString = new RealmString();
+        realmString.value = item;
+        this.list.Items.add(realmString);
+        listAdapter.notifyItemInserted(this.list.Items.size() - 1);
     }
 
     @Override
@@ -114,6 +119,6 @@ public class EditActivity extends BaseActivity
     @Override
     public void removeListItem(int position) {
         listAdapter.notifyItemRemoved(position);
-        listAdapter.notifyItemRangeChanged(position, list.getItems().size());
+        listAdapter.notifyItemRangeChanged(position, list.Items.size());
     }
 }
