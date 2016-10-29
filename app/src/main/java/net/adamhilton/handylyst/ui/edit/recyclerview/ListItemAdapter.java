@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListItemViewHolder> {
 
@@ -97,9 +96,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            RealmString realmString = new RealmString();
-            realmString.value = charSequence.toString();
-            list.Items.set(position, realmString);
+            list.Items.set(position, RealmString.valueOf(charSequence.toString()));
         }
 
         @Override

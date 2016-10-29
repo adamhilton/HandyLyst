@@ -10,4 +10,10 @@ import io.realm.RealmStringRealmProxy;
         analyze = { RealmString.class })
 public class RealmString extends RealmObject{
     public String value;
+
+    public static RealmString valueOf(String string) {
+        RealmString realmString = new RealmString();
+        realmString.value = string;
+        return realmString;
+    }
 }

@@ -106,9 +106,7 @@ public class EditActivity extends BaseActivity
 
     @Override
     public void addItemToList(String item) {
-        RealmString realmString = new RealmString();
-        realmString.value = item;
-        this.list.Items.add(realmString);
+        this.list.Items.add(RealmString.valueOf(item));
         listAdapter.notifyItemInserted(this.list.Items.size() - 1);
     }
 

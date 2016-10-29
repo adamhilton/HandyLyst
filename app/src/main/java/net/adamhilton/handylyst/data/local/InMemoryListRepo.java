@@ -76,9 +76,7 @@ public class InMemoryListRepo implements ListRepo {
         list.Name = name;
         java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
         for (String item: items) {
-            RealmString realmString = new RealmString();
-            realmString.value = item;
-            list.Items.add(realmString);
+            list.Items.add(RealmString.valueOf(item));
         }
         return list;
     }
