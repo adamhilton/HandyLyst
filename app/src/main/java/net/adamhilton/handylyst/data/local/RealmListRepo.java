@@ -20,26 +20,36 @@ public class RealmListRepo implements ListRepo {
 
     @Override
     public java.util.List<List> getAll() {
-        return null;
+        try(Realm realm = realmProvider.get()) {
+            return realm.where(List.class).findAll();
+        }
     }
 
     @Override
     public List getById(int id) {
-        return null;
+        try(Realm realm = realmProvider.get()) {
+            return realm.where(List.class).equalTo("Id", id).findFirst();
+        }
     }
 
     @Override
     public void create(List list) {
-
+        try(Realm realm = realmProvider.get()) {
+            realm.executeTransaction(r -> r.copyToRealmOrUpdate(list));
+        }
     }
 
     @Override
     public void update(List list) {
-
+        try(Realm realm = realmProvider.get()) {
+            realm.executeTransaction(r -> r.copyToRealmOrUpdate(list));
+        }
     }
 
     @Override
     public void delete(List list) {
-
+        try(Realm realm = realmProvider.get()) {
+            realm.executeTransaction(r -> list.deleteFromRealm());
+        }
     }
 }
