@@ -9,10 +9,15 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 @PerApplication
 public class InMemoryListRepo implements ListRepo {
 
     private static java.util.List<List> lists = new ArrayList<>();
+
+    @Inject
+    public InMemoryListRepo() {}
 
     @Override
     @NonNull
