@@ -8,10 +8,8 @@ import android.widget.TextView;
 
 import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
-import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
 
-import org.parceler.Parcel;
 import org.parceler.Parcels;
 
 import butterknife.BindView;

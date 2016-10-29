@@ -35,6 +35,7 @@ public class RealmListRepo implements ListRepo {
     @Override
     public void create(List list) {
         try(Realm realm = realmProvider.get()) {
+            list.Id = getNextId();
             realm.executeTransaction(r -> r.copyToRealmOrUpdate(list));
         }
     }
@@ -50,6 +51,17 @@ public class RealmListRepo implements ListRepo {
     public void delete(List list) {
         try(Realm realm = realmProvider.get()) {
             realm.executeTransaction(r -> list.deleteFromRealm());
+        }
+    }
+
+    private int getNextId()
+    {
+        try(Realm realm =  realmProvider.get()) {
+            if(realm.where(List.class).count() > 0) {
+                return realm.where(List.class).max("Id").intValue() + 1;
+            } else {
+                return 1;
+            }
         }
     }
 }

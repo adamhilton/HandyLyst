@@ -1,6 +1,5 @@
 package net.adamhilton.handylyst.injection.module;
 
-import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.local.RealmListRepo;
 

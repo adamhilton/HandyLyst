@@ -1,7 +1,5 @@
 package net.adamhilton.handylyst.ui.edit;
 
-import net.adamhilton.handylyst.HandyLystApp;
-import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.model.List;
 

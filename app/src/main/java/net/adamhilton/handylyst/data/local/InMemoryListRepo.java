@@ -3,28 +3,16 @@ package net.adamhilton.handylyst.data.local;
 import android.support.annotation.NonNull;
 
 import net.adamhilton.handylyst.data.model.List;
-import net.adamhilton.handylyst.data.model.RealmString;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-
-import javax.inject.Inject;
 
 @PerApplication
 public class InMemoryListRepo implements ListRepo {
 
     private static java.util.List<List> lists = new ArrayList<>();
-
-    @Inject
-    public InMemoryListRepo() {
-        for (int i = 0; i < 5; i++) {
-            String name = String.format("List # %s", i);
-            create(generateList(name));
-        }
-    }
 
     @Override
     @NonNull
@@ -69,15 +57,5 @@ public class InMemoryListRepo implements ListRepo {
             maxId = Collections.max(ids);
         }
         return maxId + 1;
-    }
-
-    private List generateList(String name) {
-        List list = new List();
-        list.Name = name;
-        java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
-        for (String item: items) {
-            list.Items.add(RealmString.valueOf(item));
-        }
-        return list;
     }
 }

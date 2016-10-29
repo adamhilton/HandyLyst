@@ -1,6 +1,5 @@
 package net.adamhilton.handylyst.data.local;
 
-
 import net.adamhilton.handylyst.data.model.List;
 
 public interface ListRepo {
