@@ -3,30 +3,21 @@ package net.adamhilton.handylyst.data.local;
 import android.support.annotation.NonNull;
 
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.injection.scope.PerApplication;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-public class InMemoryListRepo implements  ListRepoContract {
+import javax.inject.Inject;
 
-    private static InMemoryListRepo instance = null;
+@PerApplication
+public class InMemoryListRepo implements ListRepo {
+
     private static java.util.List<List> lists = new ArrayList<>();
 
-    public static InMemoryListRepo getInstance() {
-        if(instance == null) {
-            instance = new InMemoryListRepo();
-        }
-        return instance;
-    }
-
-    protected InMemoryListRepo() {
-        for (int i = 0; i < 5; i++) {
-            String name = String.format("List # %s", i);
-            create(generateList(name));
-        }
-    }
+    @Inject
+    public InMemoryListRepo() {}
 
     @Override
     @NonNull
@@ -37,7 +28,7 @@ public class InMemoryListRepo implements  ListRepoContract {
     @Override
     public List getById(int id) {
         for (List item : lists) {
-            if (item.getId() == id) {
+            if (item.Id == id) {
                 return item;
             }
         }
@@ -46,13 +37,13 @@ public class InMemoryListRepo implements  ListRepoContract {
 
     @Override
     public void create(List list) {
-        list.setId(getNewId());
+        list.Id = getNewId();
         lists.add(list);
     }
 
     @Override
     public void update(List list) {
-        int index = lists.indexOf(getById(list.getId()));
+        int index = lists.indexOf(getById(list.Id));
         lists.set(index, list);
     }
 
@@ -66,20 +57,10 @@ public class InMemoryListRepo implements  ListRepoContract {
         if(lists.size() > 0) {
             java.util.List<Integer> ids = new ArrayList<>();
             for (List item : lists) {
-                ids.add(item.getId());
+                ids.add(item.Id);
             }
             maxId = Collections.max(ids);
         }
         return maxId + 1;
-    }
-
-    private List generateList(String name) {
-        List list = new List();
-        list.setName(name);
-        java.util.List<String> items = Arrays.asList("Feed the dog", "Eat breakfast", "Write some code");
-        for (String item: items) {
-            list.addItem(item);
-        }
-        return list;
     }
 }

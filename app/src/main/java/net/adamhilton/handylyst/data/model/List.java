@@ -1,46 +1,24 @@
 package net.adamhilton.handylyst.data.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import net.adamhilton.handylyst.util.RealmListParcelConverter;
 
-public class List implements Serializable{
+import org.parceler.Parcel;
+import org.parceler.ParcelPropertyConverter;
 
-    private int Id;
-    private String Name;
-    private java.util.List<String> Items = new ArrayList<>();
+import io.realm.ListRealmProxy;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-    public String getName() {
-        if (Name == null || Name.isEmpty()) {
-            setName("No name set");
-        }
-        return Name;
-    }
+@Parcel(implementations = {ListRealmProxy.class},
+        value = Parcel.Serialization.FIELD,
+        analyze = { List.class })
+public class List extends RealmObject{
 
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public java.util.List<String> getItems() {
-        return Items;
-    }
-
-    public void addItem(String item) {
-        this.Items.add(item);
-    }
-
-    public void removeItem(int index) {
-        this.Items.remove(index);
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public void setItem(int index, String text) {
-        Items.set(index, text);
-    }
+    @PrimaryKey
+    public int Id;
+    public String Name;
+    @ParcelPropertyConverter(RealmListParcelConverter.class)
+    public RealmList<RealmString> Items = new RealmList<>();
+    
 }

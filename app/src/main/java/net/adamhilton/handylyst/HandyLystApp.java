@@ -2,11 +2,12 @@ package net.adamhilton.handylyst;
 
 import android.app.Application;
 
-import net.adamhilton.handylyst.data.local.ListRepoContract;
+import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.injection.component.AppComponent;
 import net.adamhilton.handylyst.injection.component.DaggerAppComponent;
 import net.adamhilton.handylyst.injection.module.AppModule;
 
+import io.realm.Realm;
 import timber.log.Timber;
 
 public class HandyLystApp extends Application {
@@ -18,6 +19,8 @@ public class HandyLystApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Realm.init(this);
         this.Instance = this;
         this.AppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
@@ -30,5 +33,9 @@ public class HandyLystApp extends Application {
 
     public static AppComponent getAppComponent() { return AppComponent; }
 
-    public static ListRepoContract getListRepo() { return AppComponent.listRepo(); }
+    public static Realm getRealm() {
+        return AppComponent.realm();
+    }
+
+    public static ListRepo getListRepo() { return AppComponent.listRepo(); }
 }
