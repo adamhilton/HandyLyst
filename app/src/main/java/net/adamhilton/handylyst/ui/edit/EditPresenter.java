@@ -1,5 +1,6 @@
 package net.adamhilton.handylyst.ui.edit;
 
+import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.model.List;
@@ -9,9 +10,9 @@ public class EditPresenter implements EditScreenContract.Presenter {
     private EditScreenContract.View view;
     private ListRepo listRepo;
 
-    public EditPresenter(EditScreenContract.View view) {
+    public EditPresenter(EditScreenContract.View view, ListRepo listRepo) {
         this.view = view;
-        listRepo = InMemoryListRepo.getInstance();
+        this.listRepo = listRepo;
     }
 
     @Override

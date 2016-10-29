@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
 import net.adamhilton.handylyst.data.model.RealmString;
@@ -30,7 +31,7 @@ public class EditActivity extends BaseActivity
     private ListItemAdapter listAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private EditPresenter presenter =  new EditPresenter(this);
+    private EditPresenter presenter =  new EditPresenter(this, HandyLystApp.getListRepo());
 
     private boolean isNewList;
 

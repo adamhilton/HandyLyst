@@ -11,20 +11,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 @PerApplication
 public class InMemoryListRepo implements ListRepo {
 
-    private static InMemoryListRepo instance = null;
     private static java.util.List<List> lists = new ArrayList<>();
 
-    public static InMemoryListRepo getInstance() {
-        if(instance == null) {
-            instance = new InMemoryListRepo();
-        }
-        return instance;
-    }
-
-    protected InMemoryListRepo() {
+    @Inject
+    public InMemoryListRepo() {
         for (int i = 0; i < 5; i++) {
             String name = String.format("List # %s", i);
             create(generateList(name));

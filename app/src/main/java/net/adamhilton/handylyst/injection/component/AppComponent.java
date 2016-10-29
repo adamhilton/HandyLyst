@@ -4,6 +4,7 @@ import android.content.Context;
 
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.injection.module.AppModule;
+import net.adamhilton.handylyst.injection.module.DataModule;
 import net.adamhilton.handylyst.injection.qualifier.AppContext;
 import net.adamhilton.handylyst.injection.scope.PerApplication;
 
@@ -11,7 +12,7 @@ import dagger.Component;
 import io.realm.Realm;
 
 @PerApplication
-@Component(modules={AppModule.class})
+@Component(modules={AppModule.class, DataModule.class})
 public interface AppComponent {
     @AppContext
     Context context();

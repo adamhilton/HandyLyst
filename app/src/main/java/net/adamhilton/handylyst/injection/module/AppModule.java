@@ -31,11 +31,6 @@ public class AppModule {
     }
 
     @Provides
-    static ListRepo provideListRepo() {
-        return InMemoryListRepo.getInstance();
-    }
-
-    @Provides
     @PerApplication
     RealmConfiguration provideRealmConfiguration() {
         RealmConfiguration.Builder builder = new RealmConfiguration.Builder();

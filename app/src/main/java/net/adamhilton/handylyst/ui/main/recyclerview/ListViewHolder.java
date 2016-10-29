@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.local.InMemoryListRepo;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
@@ -33,7 +34,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder{
     @OnClick
     public void onItemClicked() {
         Intent intent = new Intent(context, EditActivity.class);
-        intent.putExtra(EditActivity.EXTRA_LIST, Parcels.wrap(InMemoryListRepo.getInstance().getAll().get(getAdapterPosition())));
+        intent.putExtra(EditActivity.EXTRA_LIST, Parcels.wrap(HandyLystApp.getListRepo().getAll().get(getAdapterPosition())));
         context.startActivity(intent);
     }
 }
