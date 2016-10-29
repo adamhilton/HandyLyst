@@ -7,6 +7,7 @@ import net.adamhilton.handylyst.injection.component.AppComponent;
 import net.adamhilton.handylyst.injection.component.DaggerAppComponent;
 import net.adamhilton.handylyst.injection.module.AppModule;
 
+import io.realm.Realm;
 import timber.log.Timber;
 
 public class HandyLystApp extends Application {
@@ -18,6 +19,8 @@ public class HandyLystApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Realm.init(this);
         this.Instance = this;
         this.AppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
@@ -29,6 +32,10 @@ public class HandyLystApp extends Application {
     public static HandyLystApp getInstance() { return Instance; }
 
     public static AppComponent getAppComponent() { return AppComponent; }
+
+    public static Realm getRealm() {
+        return AppComponent.realm();
+    }
 
     public static ListRepo getListRepo() { return AppComponent.listRepo(); }
 }
