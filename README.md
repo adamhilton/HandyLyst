@@ -1,6 +1,7 @@
 # Handy Lyst - an android list app
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Build Status](https://travis-ci.org/Felsig/HandyLyst.svg?style=flat-square&branch=master)](https://travis-ci.org/Felsig/HandyLyst)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## made using
  - mvp pattern
