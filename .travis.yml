@@ -19,20 +19,17 @@ cache:
     - $HOME/.gradle/native
     - $HOME/.gradle/wrapper
 
-dependencies:
-  pre:
-    - mkdir "$ANDROID_SDK/licenses" || true
-    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license"
-    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_SDK/licenses/android-sdk-preview-license"
-  override:
-    # https://code.google.com/p/android/issues/detail?id=212128
-    - ./gradlew dependencies || true
-
 before_install:
   - export JAVA8_HOME=/usr/lib/jvm/java-8-oracle
   - export JAVA_HOME=$JAVA8_HOME
+  
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+before_script:
+  - mkdir "$ANDROID_SDK/licenses" || true
+  - echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license"
+  - echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_SDK/licenses/android-sdk-preview-license"
 
 script:
   - "./gradlew build connectedCheck --stacktrace"
