@@ -19,7 +19,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +39,6 @@
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
         app:layout_constraintHorizontal_bias="0.07"
         android:layout_width="100dp" />
 
@@ -49,10 +49,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
         android:id="@+id/list_item_recycler_view"
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginTop="8dp"
@@ -66,7 +64,6 @@
         tools:text="@string/create_new_list_item"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/save" />
 
 </android.support.constraint.ConstraintLayout>
