@@ -3,11 +3,14 @@ package net.adamhilton.handylyst.ui.edit;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.model.List;
 
+import javax.inject.Inject;
+
 public class EditPresenter implements EditScreenContract.Presenter {
 
     private EditScreenContract.View view;
     private ListRepo listRepo;
 
+    @Inject
     public EditPresenter(EditScreenContract.View view, ListRepo listRepo) {
         this.view = view;
         this.listRepo = listRepo;

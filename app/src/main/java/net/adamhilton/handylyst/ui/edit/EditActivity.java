@@ -11,10 +11,15 @@ import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.model.List;
 import net.adamhilton.handylyst.data.model.RealmString;
+import net.adamhilton.handylyst.injection.component.DaggerEditScreenComponent;
+import net.adamhilton.handylyst.injection.component.EditScreenComponent;
+import net.adamhilton.handylyst.injection.module.EditScreenModule;
 import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.recyclerview.ListItemAdapter;
 
 import org.parceler.Parcels;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,12 +31,14 @@ public class EditActivity extends BaseActivity
     public static final String EXTRA_LIST = "net.adamhilton.handylyst.LIST";
     public static final String EXTRA_IS_NEW_LIST = "net.adamhilton.handylyst.ISNEWLIST";
 
+    private EditScreenComponent editScreenComponent = null;
+
     private List list = new List();
 
     private ListItemAdapter listAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
-    private EditPresenter presenter =  new EditPresenter(this, HandyLystApp.getListRepo());
+    @Inject
+    protected EditPresenter presenter;
 
     private boolean isNewList;
 
@@ -43,7 +50,10 @@ public class EditActivity extends BaseActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityComponent().inject(this);
+
+        initEditScreenComponent();
+        editScreenComponent.inject(this);
+
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
 
@@ -55,6 +65,13 @@ public class EditActivity extends BaseActivity
                 list = Parcels.unwrap(bundle.getParcelable(EXTRA_LIST));
             }
         }
+    }
+
+    private void initEditScreenComponent() {
+        editScreenComponent = DaggerEditScreenComponent.builder()
+                .appComponent(HandyLystApp.getAppComponent())
+                .editScreenModule(new EditScreenModule(this))
+                .build();
     }
 
     @Override
@@ -70,13 +87,19 @@ public class EditActivity extends BaseActivity
         listAdapter.subscribeEventListener(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        editScreenComponent = null;
+    }
+
     private void initializeView() {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         name_text.setText(list.Name);
 
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         list_item_recycler_view.setLayoutManager(layoutManager);
 
         listAdapter = new ListItemAdapter(list);

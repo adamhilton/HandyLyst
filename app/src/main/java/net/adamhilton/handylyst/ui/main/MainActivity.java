@@ -13,6 +13,9 @@ import net.adamhilton.handylyst.HandyLystApp;
 import net.adamhilton.handylyst.R;
 import net.adamhilton.handylyst.data.local.ListRepo;
 import net.adamhilton.handylyst.data.model.List;
+import net.adamhilton.handylyst.injection.component.DaggerMainScreenComponent;
+import net.adamhilton.handylyst.injection.component.MainScreenComponent;
+import net.adamhilton.handylyst.injection.module.MainScreenModule;
 import net.adamhilton.handylyst.ui.base.BaseActivity;
 import net.adamhilton.handylyst.ui.edit.EditActivity;
 import net.adamhilton.handylyst.ui.main.recyclerview.ListAdapter;
@@ -24,23 +27,32 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainScreenContract.View {
 
+    MainScreenComponent mainScreenComponent = null;
+
     @BindView(R.id.list_recycler_view)
     RecyclerView list_recycler_view;
 
-    private ListAdapter listAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    private MainScreenContract.Presenter presenter;
-
     @Inject
+    protected MainPresenter presenter;
+
     ListRepo listRepo = HandyLystApp.getListRepo();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityComponent().inject(this);
+
+        initMainScreenComponent();
+        mainScreenComponent.inject(this);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+    }
+
+    private void initMainScreenComponent() {
+        mainScreenComponent = DaggerMainScreenComponent.builder()
+                .appComponent(HandyLystApp.getAppComponent())
+                .mainScreenModule(new MainScreenModule(this))
+                .build();
     }
 
     @Override
@@ -55,6 +67,12 @@ public class MainActivity extends BaseActivity implements MainScreenContract.Vie
     protected void onPause() {
         super.onPause();
         presenter = null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainScreenComponent = null;
     }
 
     @Override
@@ -77,12 +95,12 @@ public class MainActivity extends BaseActivity implements MainScreenContract.Vie
 
     @Override
     public void showViewResults(java.util.List<List> list) {
-        listAdapter = new ListAdapter(list);
+        ListAdapter listAdapter = new ListAdapter(list);
         list_recycler_view.setAdapter(listAdapter);
     }
 
     private void initializeView() {
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         list_recycler_view.setLayoutManager(layoutManager);
 
         presenter.retrieveViewResults();

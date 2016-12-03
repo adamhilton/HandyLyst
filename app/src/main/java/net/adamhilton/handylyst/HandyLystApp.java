@@ -21,8 +21,8 @@ public class HandyLystApp extends Application {
         super.onCreate();
 
         Realm.init(this);
-        this.Instance = this;
-        this.AppComponent = DaggerAppComponent.builder()
+        Instance = this;
+        AppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
 

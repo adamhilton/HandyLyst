@@ -4,11 +4,14 @@ import net.adamhilton.handylyst.data.local.ListRepo;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainPresenter implements MainScreenContract.Presenter {
 
     private MainScreenContract.View view;
     private ListRepo listRepo;
 
+    @Inject
     public MainPresenter(MainScreenContract.View view, ListRepo listRepo) {
         this.view = view;
         this.listRepo = listRepo;
